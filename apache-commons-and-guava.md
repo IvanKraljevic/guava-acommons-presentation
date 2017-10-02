@@ -5,8 +5,11 @@
 ##
 
 - set of fore libraries for almost everything you can think of:
-  - collections, IO, email, primitives, network utilities, logging, Excel and CSV parsing, CLI parsing, crypto, compression...
-- divided in to 3 parts: proper (stable, under active development), sandbox (unstable, under active development), dormant (inactive)
+    - collections, IO, email, primitives, network utilities, logging, Excel and CSV parsing, CLI parsing, crypto, compression...
+- divided in to 3 parts:
+    - proper (stable, under active development)
+    - sandbox (unstable, under active development)
+    - dormant (inactive)
 
 ##
 
@@ -28,15 +31,7 @@
 
 ##
 
-- set of core libraries for:
-  - collections
-  - graphs
-  - caching
-  - IO
-  - functional types
-  - hashing
-  - primitives
-  - ...
+- set of core libraries for: collections, graphs, caching, IO, functional types, hashing, ...
 - policy for never removing APIs (except those marked with `@Beta`)
 - Java9 compatible
 - new release every 2 weeks
@@ -48,7 +43,8 @@
 <dependency>
   <groupId>com.google.guava</groupId>
   <artifactId>guava</artifactId>
-  <version>23.1-jre</version><!-- for Android: 23.1-android -->
+  <version>23.1-jre</version>
+  <!-- for Android: 23.1-android -->
 </dependency>
 ```
 
@@ -56,26 +52,31 @@
 
 ## Pair, Triple
 
+- in JDK: `AbstractMap.SimpleEntry`, `AbstractMap.SimpleImmutableEntry`
 - immutable and mutable versions
 - don't overuse
+
 ```java
-Pair.of(key, value)
-Triple.of(first, second, third)
+Pair.of(key, value);
+Triple.of(first, second, third);
 ```
 
 ## StringUtils
 
 - null safe
-- various character checks (isNumeric, isWhitespace, isAsciiPrintable, isBlank, isEmpty,...)
+- various character checks (`isNumeric`, `isWhitespace`, `isAsciiPrintable`, `isBlank`, `isEmpty`,...)
 - various content checks (starts with, ends with, contains, difference,...)
 - various character manipulations (rotate, reverse, trim, split, join, pad right, pad left, to upper, to lower, capitalize,...)
 
+## StringUtils - examples
 ```java
 StringUtils.wrap("myString", '"'); // myString -> "myString"
 StringUtils.unwrap("\"myString\"", '"'); // "myString" -> myString
 StringUtils.abbreviate("abcdefg", 6); // abcdefg -> abc...
 StringUtils.isAlpha("myString");  // true
 ```
+
+## StringUtils - examples(2)
 
 ```java
 // before
@@ -93,27 +94,31 @@ if (isNotEmpty(s)) {
 - null safe
 - various checks (isEmpty, isSorted, lastIndexOf)
 - various content manipulations:
-  - shuffle, reverse, shift, swap
-  - add, addAll, remove, removeAllOccurrences
- - clone, subarray, ...
+    - shuffle, reverse, shift, swap
+    - add, addAll, remove, removeAllOccurrences
+    - clone, subarray, ...
 
 ## CollectionUtils
 
 - null safe
 - in Java8 most of the methods can be replaced with stream operations
-- various checks (isEmpty, isNotEmpty, isSubCollection, isEqualCollection)
+- various checks (`isEmpty`, `isNotEmpty`, `isSubCollection`, `isEqualCollection`)
 - permutations
 
-# Apache commons - IteratorUtils
+## IteratorUtils
 
 - null safe
-- must methods can be replaced with Java8 streams
-- loopingIterator, toArray, forEachButLast,...
+- most methods can be replaced with Java8 streams
+- `loopingIterator`, `toArray`, `forEachButLast`,...
 
-# Guava - Preconditions
+# Guava
+
+## Preconditions
 
 - contains a number of precodition checking utilities
 - simple and unambiguous
+
+## Preconditions - examples
 
 ```java
 // before
@@ -125,34 +130,49 @@ if (!myArg.hasSomething) {
 checkArgument(!myArg.hasSomething, "oh no it hasn't");
 ```
 
-# Guava Immutable collections
+## Immutable collections
+
+- thread safe
+- simple to build and to use
+- `Collections.unmodifiableX` - unsafe and inefficient wrappers around common collections
+- collection, set, list, map, multiset, multimap,...
+
+
+## Immutable collections - examples
+
+```java
+Set<String> s1 = ImmutableSet.of("a", "b");
+Set<String> s2 = ImmutableSet.<String>builder()
+  .add("a")
+  .add("b")
+  .build();
+```
+
+## BiMap
 - TODO
 
-# Guava - BiMap
+## Multimap, Multiset
 - TODO
 
-# Guava - Multimap, Multiset
+## Table
 - TODO
 
-# Guava - Table
+## Range
 - TODO
 
-# Guava - Range
+## Sets
 - TODO
 
-# Guava - Sets
+## Sets.difference
 - TODO
 
-# Sets.difference
+## Sets.union
 - TODO
 
-# Sets.union
+## Sets.intersection)
 - TODO
 
-# Sets.intersection)
-- TODO
-
-# Guava - other goodies
+## Other goodies
 - Math and primitives
 - EventBus
 - Graphs
@@ -160,3 +180,13 @@ checkArgument(!myArg.hasSomething, "oh no it hasn't");
 - Caching
 - BloomFilters
 
+# Useful links
+
+##
+
+- Use Stream API simpler:
+<https://medium.com/@tagir_valeev/use-stream-api-simpler-or-dont-use-it-at-all-ea0a44a4b1ff>
+
+- Guava Wiki - TODO
+
+- Apache commons wiki|guides  - TODO
