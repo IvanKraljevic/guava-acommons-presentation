@@ -6,11 +6,11 @@
 
 - set of fore libraries for almost everything you can think of:
     - collections, IO, email, primitives, network utilities, logging, Excel and CSV parsing, CLI parsing, crypto, compression...
-- mandatory: lang (3), collections, text
 - divided in to 3 parts:
     - proper (stable, under active development)
     - sandbox (unstable, under active development)
     - dormant (inactive)
+- mandatory: lang (3), collections, text
 
 ##
 
@@ -66,10 +66,10 @@ Triple.of(first, second, third);
 ##
 ### StringUtils
 
-- null safe
 - various character checks (`isNumeric`, `isWhitespace`, `isAsciiPrintable`, `isBlank`, `isEmpty`,...)
 - various content checks (starts with, ends with, contains, difference,...)
 - various character manipulations (rotate, reverse, trim, split, join, pad right, pad left, to upper, to lower, capitalize,...)
+- null safe
 
 ##
 ### StringUtils - examples
@@ -102,12 +102,12 @@ if (isNotEmpty(s)) {...}
 ##
 ### ArrayUtils
 
-- null safe
 - various checks (isEmpty, isSorted, lastIndexOf)
 - various content manipulations:
     - shuffle, reverse, shift, swap
     - add, addAll, remove, removeAllOccurrences
     - clone, subarray, ...
+- null safe
 
 ##
 ### ArrayUtils - examples
@@ -127,10 +127,10 @@ ArrayUtils.contains(foo, 1));//...
 ##
 ### CollectionUtils
 
-- null safe
 - in Java8 most of the methods can be replaced with stream operations
 - various checks (`isEmpty`, `isNotEmpty`, `isSubCollection`, `isEqualCollection`)
 - permutations
+- null safe
 
 
 ##
@@ -167,9 +167,9 @@ checkArgument(!myArg.hasSomething, "oh no it hasn't");
 ##
 ### Immutable collections
 
-- thread safe
-- simple to build and to use
 - collection, set, list, map, multiset, multimap,...
+- simple to build and to use
+- thread safe
 - `Collections.unmodifiableX` - unsafe and inefficient wrappers around common collections
 
 
@@ -303,14 +303,14 @@ Maps.difference(name2nickname, otherName2nickname).entriesInCommon();
 
 ##
 
-- Use Stream API simpler:
-<https://medium.com/@tagir_valeev/use-stream-api-simpler-or-dont-use-it-at-all-ea0a44a4b1ff>
-
 - Guava Wiki:
 <https://github.com/google/guava/wiki>
 
 - Apache commons official page:
 <http://commons.apache.org/>
+
+- Use Stream API simpler:
+<https://medium.com/@tagir_valeev/use-stream-api-simpler-or-dont-use-it-at-all-ea0a44a4b1ff>
 
 # Awaitility
 
