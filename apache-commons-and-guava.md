@@ -93,14 +93,10 @@ StringUtils.isAlpha("myString");
 
 ```java
 // before
-if (s != null && !s.isEmpty()) {
-    // ...
-}
+if (s != null && !s.isEmpty()) {...}
 
 // after
-if (isNotEmpty(s)) {
-    // ...
-}
+if (isNotEmpty(s)) {...}
 ```
 
 ##
@@ -117,7 +113,15 @@ if (isNotEmpty(s)) {
 ### ArrayUtils - examples
 
 ```java
-TODO
+int[] foo = ...
+        
+// before
+if (foo != null && foo.length > 0) {...}
+
+// after
+if (ArrayUtils.isNotEmpty(foo)) {...}
+
+ArrayUtils.contains(foo, 1));//...
 ```
 
 ##
@@ -133,15 +137,14 @@ TODO
 ### CollectionUtils - examples
 
 ```java
-TODO
+List<String> list = ...
+        
+// before
+if (list != null && list.size() > 0) {...}
+
+// after
+if (CollectionUtils.isNotEmpty(list)) {...}
 ```
-
-##
-### IteratorUtils
-
-- null safe
-- most methods can be replaced with Java8 streams
-- `loopingIterator`, `toArray`, `forEachButLast`,...
 
 # Guava
 
@@ -184,7 +187,7 @@ Set<String> s2 = ImmutableSet.<String>builder()
 ##
 ### Multiset
 
-- useful when you have to count the number of occurences of an object
+- useful when you have to count the number of occurrences of an object
 - similar to `Map<E, Long>`
 - better version of Apache commons' `Bag`
 
@@ -192,7 +195,13 @@ Set<String> s2 = ImmutableSet.<String>builder()
 ### Multiset - examples
 
 ```java
-TODO
+HashMultiset<String> set = HashMultiset.create();
+set.add("a");
+set.add("b");
+set.add("c", 5);
+int five = set.count("c");
+set.setCount("b", 0);
+Set<String> elements = set.elementSet();
 ```
 
 ##
@@ -204,7 +213,12 @@ TODO
 ##
 ### Multimap - examples
 ```java
-TODO
+HashMultimap<String, String> firstName2Nickname = HashMultimap.create();
+firstName2Nickname.put("John", "Doe");
+firstName2Nickname.put("John", "Brko");
+
+// ["Doe", "Brko"]
+Set<String> johns = firstName2Nickname.get("John");
 ```
 
 ##
@@ -218,44 +232,60 @@ TODO
 ### BiMap - examples
 
 ```java
-TODO
+BiMap<String, Long> name2Id = HashBiMap.create();
+String nameForId = name2Id.inverse().get(12L);
 ```
 
 ##
-### Range
-- TODO
-
-##
 ### Utility: Lists
-- TODO
+
+- static constructors and factories
+- various iterators, filters, mappers, etc. (similar operations to those offered by Java8 Stream API)
+
 
 ##
 ### Utility: Lists - examples
 ```java
-TODO
+List<String> l = Lists.newArrayList("a", "b", "c");
+List<List<String>> partition = Lists.partition(l, 2);
 ```
 
 ##
 ### Utility: Sets
-- TODO
+
+- static constructors and factories
+- various iterators, filters, mappers, etc. (similar operations to those offered by Java8 Stream API)
+- set-theoretic operations: union, intersection, difference, symmetric difference
 
 ##
 ### Utility: Sets - examples
 ```java
-TODO
-Sets.difference
-Sets.union
-Sets.intersection
+HashSet<String> s1 = Sets.newHashSet("a", "b", "c");
+HashSet<String> s2 = Sets.newHashSet("c", "d", "e");
+
+Sets.union(s1, s2); // [a, b, c, d, e]
+Sets.intersection(s1, s2); // [c]
+Sets.difference(s1, s2); // [a, b]
+Sets.difference(s2, s1); // [d, e]
+Sets.symmetricDifference(s1, s2); // [a, b, d, e]
 ```
 
 ##
 ### Utility: Maps
-- TODO
+
+- static constructors and factories
+- various iterators, filters, mappers, etc. (similar operations to those offered by Java8 Stream API)
+- additional methods for inspecting differences between two lists
 
 ##
 ### Utility: Maps - examples
 ```java
-TODO
+Map<String, String> name2nickname = Maps.newHashMap(
+  ImmutableMap.of("John", "Doe", "Jane", "Doe"));
+Map<String, String> otherName2nickname = Maps.newLinkedHashMap(
+  ImmutableBiMap.of("Foo", "Boo", "Hello", "World"));
+        
+Maps.difference(name2nickname, otherName2nickname).entriesInCommon();
 ```
 
 
@@ -284,4 +314,15 @@ TODO
 
 # Awaitility
 
-TODO
+##
+
+> Awaitility is a small Java DSL for synchronizing asynchronous operations 
+
+- See: <https://github.com/awaitility/awaitility> 
+```java
+@Test
+public void test() {
+    // do something async
+    await().atMost(2, SECONDS).until(userRepository::isEmpty);
+}
+```
