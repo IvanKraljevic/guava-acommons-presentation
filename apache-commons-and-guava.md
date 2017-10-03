@@ -114,7 +114,7 @@ if (isNotEmpty(s)) {...}
 
 ```java
 int[] foo = ...
-        
+
 // before
 if (foo != null && foo.length > 0) {...}
 
@@ -138,7 +138,7 @@ ArrayUtils.contains(foo, 1));//...
 
 ```java
 List<String> list = ...
-        
+
 // before
 if (list != null && list.size() > 0) {...}
 
@@ -195,7 +195,7 @@ Set<String> s2 = ImmutableSet.<String>builder()
 ### Multiset - examples
 
 ```java
-HashMultiset<String> set = HashMultiset.create();
+Multiset<String> set = HashMultiset.create();
 set.add("a");
 set.add("b");
 set.add("c", 5);
@@ -213,7 +213,7 @@ Set<String> elements = set.elementSet();
 ##
 ### Multimap - examples
 ```java
-HashMultimap<String, String> firstName2Nickname = HashMultimap.create();
+Multimap<String, String> firstName2Nickname = HashMultimap.create();
 firstName2Nickname.put("John", "Doe");
 firstName2Nickname.put("John", "Brko");
 
@@ -260,8 +260,8 @@ List<List<String>> partition = Lists.partition(l, 2);
 ##
 ### Utility: Sets - examples
 ```java
-HashSet<String> s1 = Sets.newHashSet("a", "b", "c");
-HashSet<String> s2 = Sets.newHashSet("c", "d", "e");
+Set<String> s1 = Sets.newHashSet("a", "b", "c");
+Set<String> s2 = Sets.newHashSet("c", "d", "e");
 
 Sets.union(s1, s2); // [a, b, c, d, e]
 Sets.intersection(s1, s2); // [c]
@@ -284,7 +284,7 @@ Map<String, String> name2nickname = Maps.newHashMap(
   ImmutableMap.of("John", "Doe", "Jane", "Doe"));
 Map<String, String> otherName2nickname = Maps.newLinkedHashMap(
   ImmutableBiMap.of("Foo", "Boo", "Hello", "World"));
-        
+
 Maps.difference(name2nickname, otherName2nickname).entriesInCommon();
 ```
 
@@ -316,13 +316,16 @@ Maps.difference(name2nickname, otherName2nickname).entriesInCommon();
 
 ##
 
-> Awaitility is a small Java DSL for synchronizing asynchronous operations 
+> Awaitility is a small Java DSL for synchronizing asynchronous operations
 
-- See: <https://github.com/awaitility/awaitility> 
+- See: <https://github.com/awaitility/awaitility>
+
 ```java
 @Test
 public void test() {
-    // do something async
-    await().atMost(2, SECONDS).until(userRepository::isEmpty);
+  // do something async
+  await()
+    .atMost(2, SECONDS)
+    .until(userRepository::isEmpty);
 }
 ```
