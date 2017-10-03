@@ -6,6 +6,7 @@
 
 - set of fore libraries for almost everything you can think of:
     - collections, IO, email, primitives, network utilities, logging, Excel and CSV parsing, CLI parsing, crypto, compression...
+- mandatory: lang (3), collections, text
 - divided in to 3 parts:
     - proper (stable, under active development)
     - sandbox (unstable, under active development)
@@ -43,14 +44,15 @@
 <dependency>
   <groupId>com.google.guava</groupId>
   <artifactId>guava</artifactId>
-  <version>23.1-jre</version>
   <!-- for Android: 23.1-android -->
+  <version>23.1-jre</version>
 </dependency>
 ```
 
 # Apache commons
 
-## Pair, Triple
+##
+### Pair, Triple
 
 - in JDK: `AbstractMap.SimpleEntry`, `AbstractMap.SimpleImmutableEntry`
 - immutable and mutable versions
@@ -61,35 +63,48 @@ Pair.of(key, value);
 Triple.of(first, second, third);
 ```
 
-## StringUtils
+##
+### StringUtils
 
 - null safe
 - various character checks (`isNumeric`, `isWhitespace`, `isAsciiPrintable`, `isBlank`, `isEmpty`,...)
 - various content checks (starts with, ends with, contains, difference,...)
 - various character manipulations (rotate, reverse, trim, split, join, pad right, pad left, to upper, to lower, capitalize,...)
 
-## StringUtils - examples
+##
+### StringUtils - examples
+
 ```java
-StringUtils.wrap("myString", '"'); // myString -> "myString"
-StringUtils.unwrap("\"myString\"", '"'); // "myString" -> myString
-StringUtils.abbreviate("abcdefg", 6); // abcdefg -> abc...
-StringUtils.isAlpha("myString");  // true
+// myString -> "myString"
+StringUtils.wrap("myString", '"');
+
+// "myString" -> myString
+StringUtils.unwrap("\"myString\"", '"');
+
+// abcdefg -> abc...
+StringUtils.abbreviate("abcdefg", 6);
+
+// true
+StringUtils.isAlpha("myString");
 ```
 
-## StringUtils - examples(2)
+##
+### StringUtils - examples(2)
 
 ```java
 // before
 if (s != null && !s.isEmpty()) {
     // ...
 }
+
 // after
 if (isNotEmpty(s)) {
     // ...
 }
 ```
 
-## ArrayUtils
+##
+### ArrayUtils
 
 - null safe
 - various checks (isEmpty, isSorted, lastIndexOf)
@@ -98,14 +113,31 @@ if (isNotEmpty(s)) {
     - add, addAll, remove, removeAllOccurrences
     - clone, subarray, ...
 
-## CollectionUtils
+##
+### ArrayUtils - examples
+
+```java
+TODO
+```
+
+##
+### CollectionUtils
 
 - null safe
 - in Java8 most of the methods can be replaced with stream operations
 - various checks (`isEmpty`, `isNotEmpty`, `isSubCollection`, `isEqualCollection`)
 - permutations
 
-## IteratorUtils
+
+##
+### CollectionUtils - examples
+
+```java
+TODO
+```
+
+##
+### IteratorUtils
 
 - null safe
 - most methods can be replaced with Java8 streams
@@ -113,12 +145,11 @@ if (isNotEmpty(s)) {
 
 # Guava
 
-## Preconditions
+##
+### Preconditions
 
 - contains a number of precodition checking utilities
 - simple and unambiguous
-
-## Preconditions - examples
 
 ```java
 // before
@@ -130,15 +161,17 @@ if (!myArg.hasSomething) {
 checkArgument(!myArg.hasSomething, "oh no it hasn't");
 ```
 
-## Immutable collections
+##
+### Immutable collections
 
 - thread safe
 - simple to build and to use
-- `Collections.unmodifiableX` - unsafe and inefficient wrappers around common collections
 - collection, set, list, map, multiset, multimap,...
+- `Collections.unmodifiableX` - unsafe and inefficient wrappers around common collections
 
 
-## Immutable collections - examples
+##
+### Immutable collections - examples
 
 ```java
 Set<String> s1 = ImmutableSet.of("a", "b");
@@ -148,31 +181,87 @@ Set<String> s2 = ImmutableSet.<String>builder()
   .build();
 ```
 
-## BiMap
+##
+### Multiset
+
+- useful when you have to count the number of occurences of an object
+- similar to `Map<E, Long>`
+- better version of Apache commons' `Bag`
+
+##
+### Multiset - examples
+
+```java
+TODO
+```
+
+##
+### Multimap
+
+- each key can contain a list or set of values
+- similar to `Map<K, List<V>>` or `Map<K, Set<V>>` but with additional goodies
+
+##
+### Multimap - examples
+```java
+TODO
+```
+
+##
+### BiMap
+
+- TLDR: keys point to values, values point to keys
+- easy way to maintain two separate maps and keep them in sync
+- both keys and values have to be unique
+
+##
+### BiMap - examples
+
+```java
+TODO
+```
+
+##
+### Range
 - TODO
 
-## Multimap, Multiset
+##
+### Utility: Lists
 - TODO
 
-## Table
+##
+### Utility: Lists - examples
+```java
+TODO
+```
+
+##
+### Utility: Sets
 - TODO
 
-## Range
+##
+### Utility: Sets - examples
+```java
+TODO
+Sets.difference
+Sets.union
+Sets.intersection
+```
+
+##
+### Utility: Maps
 - TODO
 
-## Sets
-- TODO
+##
+### Utility: Maps - examples
+```java
+TODO
+```
 
-## Sets.difference
-- TODO
 
-## Sets.union
-- TODO
+##
+### Other goodies
 
-## Sets.intersection)
-- TODO
-
-## Other goodies
 - Math and primitives
 - EventBus
 - Graphs
@@ -187,6 +276,12 @@ Set<String> s2 = ImmutableSet.<String>builder()
 - Use Stream API simpler:
 <https://medium.com/@tagir_valeev/use-stream-api-simpler-or-dont-use-it-at-all-ea0a44a4b1ff>
 
-- Guava Wiki - TODO
+- Guava Wiki:
+<https://github.com/google/guava/wiki>
 
-- Apache commons wiki|guides  - TODO
+- Apache commons official page:
+<http://commons.apache.org/>
+
+# Awaitility
+
+TODO
