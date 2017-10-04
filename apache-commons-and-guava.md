@@ -4,9 +4,9 @@
 
 ##
 
-- set of fore libraries for almost everything you can think of:
+- set of core libraries for almost everything you can think of:
     - collections, IO, email, primitives, network utilities, logging, Excel and CSV parsing, CLI parsing, crypto, compression...
-- divided in to 3 parts:
+- divided into 3 parts:
     - proper (stable, under active development)
     - sandbox (unstable, under active development)
     - dormant (inactive)
@@ -121,7 +121,7 @@ if (foo != null && foo.length > 0) {...}
 // after
 if (ArrayUtils.isNotEmpty(foo)) {...}
 
-ArrayUtils.contains(foo, 1));//...
+ArrayUtils.contains(foo, 1));
 ```
 
 ##
@@ -157,11 +157,11 @@ if (CollectionUtils.isNotEmpty(list)) {...}
 ```java
 // before
 if (!myArg.hasSomething) {
-  throw new IllegalArgumentException("oh no it hasn't");
+  throw new IllegalArgumentException("myArg has nothing!");
 }
 
 // after
-checkArgument(!myArg.hasSomething, "oh no it hasn't");
+checkArgument(!myArg.hasSomething, "myArg has nothing!");
 ```
 
 ##
@@ -293,23 +293,26 @@ Maps.difference(name2nickname, otherName2nickname).entriesInCommon();
 ### Other goodies
 
 - Math and primitives
-- EventBus
-- Graphs
-- Equals|HashCode builders
 - Caching
+- Graphs, Ranges
 - BloomFilters
+- Equals|HashCode builders
+- EventBus
 
 # Useful links
 
 ##
 
 - Guava Wiki:
+<br>
 <https://github.com/google/guava/wiki>
 
 - Apache commons official page:
+<br>
 <http://commons.apache.org/>
 
 - Use Stream API simpler:
+<br>
 <https://medium.com/@tagir_valeev/use-stream-api-simpler-or-dont-use-it-at-all-ea0a44a4b1ff>
 
 # Awaitility
